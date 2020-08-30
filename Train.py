@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 
 Pytorch implementation of Pointer Network.
@@ -95,13 +97,13 @@ for epoch in range(params.nof_epoch):
 
         loss = CCE(o, target_batch)
 
-        losses.append(loss.data[0])
-        batch_loss.append(loss.data[0])
+        losses.append(loss.item())
+        batch_loss.append(loss.item())
 
         model_optim.zero_grad()
         loss.backward()
         model_optim.step()
 
-        iterator.set_postfix(loss='{}'.format(loss.data[0]))
+        iterator.set_postfix(loss='{}'.format(loss.item()))
 
     iterator.set_postfix(loss=np.average(batch_loss))
